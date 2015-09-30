@@ -1,16 +1,16 @@
 
 <ion-side-menus   drag-content="false" >
       <ion-nav-bar class="bar-stable">
-      <ion-nav-buttons >
+      <ion-nav-buttons side="right" >
       <button class="button button-icon button-clear ion-navicon" menu-toggle="left" side="left"></button>
       <button class="button button-icon button-clear ion-ios-arrow-back" ng-click="myGoBack()"></button>
      
-      <input type="text"></input>
+      <input type="text" style="width:280px;text-align:center" class="form-control" placeholder="Search"></input>
       <button class="button button-icon button-clear ion-ios-cart" side="right"></button>
 
       </ion-nav-buttons>
 
-    </ion-nav-bar>
+      </ion-nav-bar>
 
 
 <ion-side-menu-content  drag-content="false">
@@ -42,7 +42,12 @@
     <ion-content >
       <ion-list>
         <ion-item menu-close ng-click="login()">
-          Login
+            <center>
+           <div class="item-avatar" href="#" style="left:40%;"><img src="img/user.jpg">         
+           </div>
+           </center>
+
+          Sign In
         </ion-item>
        
       </ion-list>
