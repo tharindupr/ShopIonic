@@ -48,18 +48,29 @@ angular.module('mobile', ['ionic', 'mobile.controllers'])
       url: '/home',
       views: {
         'menuContent': {
-          templateUrl: 'templates/home.html',
+          templateUrl: 'templates/home.html'
        //   controller: 'HomeCtrl'
         }
       }
     })
 
   .state('app.home.social', {
-    url: '/app/home/social',
+    url: '/social',
     views: {
       'tab-social': {
-        templateUrl: 'templates/social.html',
+        templateUrl: 'templates/social.html'
         
+      }
+    }
+  })
+
+
+  .state('app.home.catergory', {
+    url: '/catergory',
+    views: {
+      'tab-category': {
+        templateUrl: 'templates/categories.html',
+        controller: 'CatCtrl'
       }
     }
   });
