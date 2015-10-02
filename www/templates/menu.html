@@ -1,5 +1,6 @@
 
-<ion-side-menus   drag-content="false" >
+<ion-side-menus  enable-menu-with-back-views="false" >
+<ion-side-menu-content  drag-content="false">
       <ion-nav-bar class="bar-stable">
       <ion-nav-buttons side="right" >
       <button class="button button-icon button-clear ion-navicon" menu-toggle="left" side="left"></button>
@@ -13,29 +14,35 @@
       </ion-nav-bar>
 
 
-<ion-side-menu-content  drag-content="false">
-    
 
-   
-   <!-- <ion-nav-bar class="bar-stable">
-      <ion-nav-buttons >
-      <button class="button button-icon button-clear ion-navicon" menu-toggle="left" side="left"></button>
-      <button class="button button-icon button-clear ion-ios-arrow-back" ng-click="myGoBack()"></button>
-     
-
-      <button class="button button-icon button-clear ion-ios-cart" side="right"></button>
-
-      </ion-nav-buttons>
-
-    </ion-nav-bar>-->
+<ion-tabs class="tabs-striped tabs-background-light tabs-color-dark">
 
 
+    <ion-tab title="<b>Home</b>" icon="ion-ios-home"  ui-sref="app.social">
+        <ion-nav-view name="tab-social" class="fade-in-out" >
+
+        </ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Categories" icon="ion-grid" ui-sref="app.catergory">
+        <ion-nav-view name="tab-category" animation="slide-left-right"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Settings" icon="ion-ios-cog" >
+       
+    </ion-tab>
+
+    <ion-tab title="Item" icon="ion-ios-pricetags" >
+       <ion-nav-view name="tab-item" animate="slide-left-right"></ion-nav-view>
+    </ion-tab>
 
 
-<ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
-  </ion-side-menu-content>
+</ion-tabs>
 
-  <ion-side-menu side="left">
+</ion-side-menu-content>
+
+
+<ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
       
     </ion-header-bar>
@@ -51,5 +58,6 @@
        
       </ion-list>
     </ion-content>
-  </ion-side-menu>
-</ion-side-menus>
+</ion-side-menu>
+
+

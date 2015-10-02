@@ -26,16 +26,16 @@ angular.module('mobile', ['ionic', 'mobile.controllers'])
   $stateProvider
 
     .state('app', {
-    abstract:true,
     url: '/app',
-    abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
-  })
+    })
+
+
     .state('app.item', {
       url: '/item/:item',
       views: {
-        'menuContent': {
+        'tab-item': {
           templateUrl: 'templates/item.html',
           controller: 'ItemCtrl'
         }
@@ -44,17 +44,9 @@ angular.module('mobile', ['ionic', 'mobile.controllers'])
     })
 
   
-  .state('app.home', {
-      url: '/home',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/home.html'
-       //   controller: 'HomeCtrl'
-        }
-      }
-    })
+ 
 
-  .state('app.home.social', {
+  .state('app.social', {
     url: '/social',
     views: {
       'tab-social': {
@@ -65,7 +57,7 @@ angular.module('mobile', ['ionic', 'mobile.controllers'])
   })
 
 
-  .state('app.home.catergory', {
+  .state('app.catergory', {
     url: '/catergory',
     views: {
       'tab-category': {
@@ -75,5 +67,5 @@ angular.module('mobile', ['ionic', 'mobile.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/app');
 });
