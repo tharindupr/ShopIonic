@@ -80,4 +80,29 @@ angular.module('mobile.controllers', [])
     return $scope.shownGroup === group;
   };
   
+})
+
+
+
+.controller('SocialModuleCtrl1', function($scope, $ionicModal, $timeout,$stateParams) {
+
+  $scope.json=[{src:"img/slide1.PNG"},{src:"img/slide2.PNG"},{src:"img/slide3.PNG"},{src:"img/slide3.PNG"}];
+  //$scope.json=JSON.parse("[{'id':'1', 'src':'img/slide1.png'},{'id':'2', 'src':'img/slide2.png'},{'id':'3', 'src':'img/slide3.png'}]");
+})
+
+
+
+.controller('SocialModuleCtrl2', function($scope, $ionicModal, $timeout,$stateParams) {
+
+  $scope.json=[{src:"img/headphone.jpg"},{src:"img/headphone1.jpg"},{src:"img/headphone2.jpg"},{src:"img/headphone1.jpg"}];
+  //$scope.json=JSON.parse("[{'id':'1', 'src':'img/slide1.png'},{'id':'2', 'src':'img/slide2.png'},{'id':'3', 'src':'img/slide3.png'}]");
+
+})
+
+
+.controller('SocialModuleCtrl3', function($scope, $ionicModal, $timeout,$stateParams) {
+
+  $scope.json=[{src:"img/headphone.jpg"},{src:"img/headphone1.jpg"},{src:"img/headphone2.jpg"},{src:"img/headphone1.jpg"}];
+  //$scope.json=JSON.parse("[{'id':'1', 'src':'img/slide1.png'},{'id':'2', 'src':'img/slide2.png'},{'id':'3', 'src':'img/slide3.png'}]");
+
 });
