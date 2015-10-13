@@ -1,3 +1,9 @@
+var requestToken = "";
+var accessToken = "";
+var clientId = "234756189512-9jqag1kj4034ftpreq46aeda29avgcp0.apps.googleusercontent.com";
+var clientSecret = "0BxGwTi_WPx2II0o78f_jkBH";
+
+
 angular.module('mobile.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout,$ionicHistory) {
@@ -105,4 +111,40 @@ angular.module('mobile.controllers', [])
   $scope.json=[{src:"img/headphone.jpg"},{src:"img/headphone1.jpg"},{src:"img/headphone2.jpg"},{src:"img/headphone1.jpg"}];
   //$scope.json=JSON.parse("[{'id':'1', 'src':'img/slide1.png'},{'id':'2', 'src':'img/slide2.png'},{'id':'3', 'src':'img/slide3.png'}]");
 
+})
+
+
+
+
+
+.controller('LoginCtrl', function($scope, $http, $location) {
+ 
+    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+ 
+    $scope.login = function() {
+        var ref = window.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=http://127.0.0.1:81/&scope=https://www.googleapis.com/auth/urlshortener&approval_prompt=force&response_type=code&access_type=offline', 'location=no');
+        ref.addEventListener('loadstart', function(event) { 
+            if((event.url).startsWith("http://127.0.0.1:81/")) {
+                requestToken = (event.url).split("code=")[1];
+                $http({method: "post", url: "https://accounts.google.com/o/oauth2/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                    .success(function(data) {
+                        accessToken = data.access_token;
+                        $location.path("app/home/social");
+                       //$state.go('app.home.social');
+
+                    })
+                    .error(function(data, status) {
+                        alert("ERROR: " + data);
+                    });
+                ref.close();
+            }
+        });
+    }
+ 
+    if (typeof String.prototype.startsWith != 'function') {
+        String.prototype.startsWith = function (str){
+            return this.indexOf(str) == 0;
+        };
+    }
+    
 });

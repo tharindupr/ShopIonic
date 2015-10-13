@@ -1,5 +1,5 @@
 
-angular.module('mobile', ['ionic', 'mobile.controllers'])
+var mobile=angular.module('mobile', ['ionic', 'mobile.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -22,7 +22,7 @@ angular.module('mobile', ['ionic', 'mobile.controllers'])
 
     .state('app', {
     url: '/app',
-    abstract: true,
+    //abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
@@ -67,7 +67,18 @@ angular.module('mobile', ['ionic', 'mobile.controllers'])
         controller: 'CatCtrl'
       }
     }
+  })
+
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+      
+    
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/login');
 });
+
+
+

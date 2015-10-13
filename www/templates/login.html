@@ -1,5 +1,5 @@
 
-<div ng-contoller="AppCtrl">
+<div ng-contoller="LoginCtrl">
 <ion-modal-view>
   <ion-header-bar>
     <h1 class="title">Login</h1>
@@ -21,6 +21,18 @@
           <button class="button button-block button-calm" type="submit">Log with Twitter</button>
         
     </div>
+
+
+    <ion-content>
+        <div>
+            <div class="padding">
+                <button ng-click="login()" class="button button-block button-stable">
+                    Sign In
+                </button>
+            </div>
+        </div>
+    </ion-content>
+
    
   </ion-content>
 </ion-modal-view>
