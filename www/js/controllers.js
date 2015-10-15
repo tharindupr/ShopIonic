@@ -117,34 +117,24 @@ angular.module('mobile.controllers', [])
 
 
 
-.controller('LoginCtrl', function($scope, $http, $location) {
- 
-    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
- 
-    $scope.login = function() {
-        var ref = window.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=http://127.0.0.1:81/&scope=https://www.googleapis.com/auth/urlshortener&approval_prompt=force&response_type=code&access_type=offline', 'location=no');
-        ref.addEventListener('loadstart', function(event) { 
-            if((event.url).startsWith("http://127.0.0.1:81/")) {
-                requestToken = (event.url).split("code=")[1];
-                $http({method: "post", url: "https://accounts.google.com/o/oauth2/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
-                    .success(function(data) {
-                        accessToken = data.access_token;
-                        $location.path("app/home/social");
-                       //$state.go('app.home.social');
 
-                    })
-                    .error(function(data, status) {
-                        alert("ERROR: " + data);
-                    });
-                ref.close();
-            }
+.controller("GoogleOauth", function($scope, $cordovaOauth,$state) {
+     
+    $scope.googleLogin = function() {
+        $cordovaOauth.google("234756189512-9jqag1kj4034ftpreq46aeda29avgcp0.apps.googleusercontent.com", ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
+            
+            // $location.path("../app/home/social");
+            //  alert(JSON.stringify(result));
+            $state.go('app.home');
+
+        }, function(error) {
+            console.log(error);
         });
     }
- 
-    if (typeof String.prototype.startsWith != 'function') {
-        String.prototype.startsWith = function (str){
-            return this.indexOf(str) == 0;
-        };
+
+    $scope.next=function(){
+      alert('done');
+      $state.go('app.home');
     }
-    
+
 });

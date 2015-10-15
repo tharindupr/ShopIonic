@@ -1,38 +1,25 @@
 
-<div ng-contoller="LoginCtrl">
+<div ng-contoller="GoogleOauth">
 <ion-modal-view>
   <ion-header-bar>
     <h1 class="title">Login</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
-    </div>
+
+
   </ion-header-bar>
   <ion-content>
    <br><br><br><br><br>
     <div class="row">
-          <button class="button button-block button-positive" type="submit">Log with Facebook</button>
+          <button style="width:60%;left:20%"class="button icon ion-social-facebook button-block button-positive" type="submit">&nbsp;Log with Facebook</button>
     </div>  
         
     <div class="row">
-        <button class="button button-block button-assertive" type="submit">Log with Google</button>
+        <button style="width:60%;left:20%" class="button icon ion-social-google button-block button-assertive" ng-click="googleLogin()" type="submit">&nbsp;Log with Google</button>
     </div> 
 
     <div class="row"> 
-          <button class="button button-block button-calm" type="submit">Log with Twitter</button>
+          <button style="width:60%;left:20%" class="button button-block icon ion-social-twitter button-calm" type="submit">&nbsp;Log with Twitter</button>
         
     </div>
-
-
-    <ion-content>
-        <div>
-            <div class="padding">
-                <button ng-click="login()" class="button button-block button-stable">
-                    Sign In
-                </button>
-            </div>
-        </div>
-    </ion-content>
-
    
   </ion-content>
 </ion-modal-view>

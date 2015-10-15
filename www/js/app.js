@@ -1,5 +1,5 @@
 
-var mobile=angular.module('mobile', ['ionic', 'mobile.controllers'])
+var mobile=angular.module('mobile', ['ionic', 'mobile.controllers','ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -72,7 +72,7 @@ var mobile=angular.module('mobile', ['ionic', 'mobile.controllers'])
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
-    controller: 'LoginCtrl'
+    controller: 'GoogleOauth'
       
     
   });
