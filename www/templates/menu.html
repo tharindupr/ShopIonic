@@ -1,13 +1,9 @@
 
 <ion-side-menus   drag-content="false" >
       <ion-nav-bar class="bar-stable">
-      <ion-nav-buttons side="right" >
+      <ion-nav-buttons side="left" >
       <button class="button button-icon button-clear ion-navicon" menu-toggle="left" side="left"></button>
-      <button class="button button-icon button-clear ion-ios-arrow-back" ng-click="myGoBack()"></button>
-     
-      <input type="text" style="width:280px;text-align:center" class="form-control" placeholder="Search"></input>
-      <button class="button button-icon button-clear ion-ios-cart" side="right"></button>
-
+      
       </ion-nav-buttons>
 
       </ion-nav-bar>
@@ -20,7 +16,6 @@
     <ion-nav-bar class="bar-stable">
       <ion-nav-buttons >
       <button class="button button-icon button-clear ion-navicon" menu-toggle="left" side="left"></button>
-      <button class="button button-icon button-clear ion-ios-arrow-back" ng-click="myGoBack()"></button>
      
 
       <button class="button button-icon button-clear ion-ios-cart" side="right"></button>
@@ -44,7 +39,7 @@
         <ion-item menu-close ng-click="login()">
             
          
-           <div class="item-avatar" href="#" ><img src="img/user.jpg" style="left:100px;"><br> <br><br>&nbsp;Sign In   </img>  
+           <div class="item-avatar" href="#" ><img src="{{img}}" style="left:100px;"><br> <br><br>{{name}}  </img>  
            </div>
           
         </ion-item>
