@@ -66,18 +66,12 @@ function callback1(error,response,body){
   				userid=body.id;
   				//console.log(likelist);
 
-				User.update({'id': '4441624615381'}, {'likes':likelist} , {} , function (err, count) {
+				User.update({'id': userid}, {'likes':likelist} , {} , function (err, count) {
 					if (err) console.log(err);
 					res.send({ 'updated': count });
 				});		
 
 
-				User.find({ 'id': '4441624615381'}, function (err, rcd) {
-					if (err) console.log(err);
-					
-
-					console.log(rcd);
-				});	
 			
 				//User.update({ 'id': '4441624615381' },  { 'fname': 'large' },{},function(error){console.log(error);});
 				//console.log(likelist);
