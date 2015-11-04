@@ -59,7 +59,7 @@ $http.get('https://graph.facebook.com/me/picture?redirect=0&access_token='+reque
 }
 $http({
     method: 'POST',
-    url: 'http://localhost:8080/api/user',
+    url: 'http://54.179.157.173:8080/api/user',
     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
     transformRequest: function(obj) {
         var str = [];
@@ -67,7 +67,7 @@ $http({
         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
         return str.join("&");
     },
-    data: {token: 'sadas'}
+    data: {token: requestToken }
 }).success(function (res,status) {
 
   alert(JSON.stringify(res));
@@ -133,11 +133,11 @@ $http({
 .controller("FacebookOauth", function($scope, $cordovaOauth,$state, $location,$http) {
 
     $scope.facebookLogin = function() {
-        $cordovaOauth.facebook("1679199088960955", ["email", "public_profile"]).then(function(result) {
+        $cordovaOauth.facebook("1679199088960955", ["email", "public_profile","user_likes"]).then(function(result) {
             //$localStorage.accessToken = result.access_token;
              requestToken=result.access_token;
              loginfrom="facebook";
-             alert(requestToken);
+             //alert(requestToken);
              $state.go('app.home');
 
              
