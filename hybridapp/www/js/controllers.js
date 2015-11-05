@@ -1,9 +1,9 @@
-var requestToken = "";
+var requestToken = "CAACEdEose0cBAFH4gcbRoNpnTK0NbZAK2frbp4tdM6Ub9H5eizFHwyxXZARRn9d39mPVrjZCArx3lAa56NTobZBo5MvG1kHyBm7YepDpdi3WCbA2YFByDUl47fNGoFO6vYCPOTZAQ5mat4LM4f8GPNNoN2pJUwH5UQrn7cx7yDYYWpmDaFf0jlOqUZA8X9TqIFDzLj6vT7iQZDZD";
 var accessToken = "";
 var clientId = "234756189512-9jqag1kj4034ftpreq46aeda29avgcp0.apps.googleusercontent.com";
 var clientSecret = "0BxGwTi_WPx2II0o78f_jkBH";
 var loginfrom="";
-
+var userid="";
 angular.module('mobile.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout,$ionicHistory,$http) {
@@ -23,6 +23,7 @@ if(loginfrom=="google"){
     
     $scope.img=resp.data.picture;
     $scope.email=resp.data.email;
+
   
     // For JSON responses, resp.data contains the result
   }, function(err) {
@@ -33,10 +34,36 @@ if(loginfrom=="google"){
 
 else if(loginfrom="facebook")
 {
-$http.get('https://graph.facebook.com/me?access_token='+requestToken).then(function(resp) {
+//getting the user name and photo from facebook
+$http.get('https://graph.facebook.com/me?access_token='+requestToken).then(function(resp) {   
                
       $scope.name=resp.data.name;            
-                    
+      userid=resp.data.id; 
+
+      $http.get('http://localhost:8080/api/isthere/'+userid).then(function(resp){
+
+             console.log(resp.data.length);  
+             if(resp.data.length>0){
+                      $http({
+                          method: 'POST',
+                          url: 'http://54.179.157.173:8080/api/create',
+                          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                          transformRequest: function(obj) {
+                              var str = [];
+                              for(var p in obj)
+                              str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                              return str.join("&");
+                          },
+                          data: {token: requestToken }
+                      }).success(function (res,status) {
+
+                        alert(JSON.stringify(res));
+                      });
+
+
+             }  
+
+      } ,function(err){console.log(err)});           
                     
                       // For JSON responses, resp.data contains the result
 }, function(err) {
@@ -57,6 +84,11 @@ $http.get('https://graph.facebook.com/me/picture?redirect=0&access_token='+reque
 });
 
 }
+
+
+
+/*
+
 $http({
     method: 'POST',
     url: 'http://54.179.157.173:8080/api/user',
@@ -73,10 +105,16 @@ $http({
   alert(JSON.stringify(res));
 });
 
-
+*/
 
 
 })
+
+
+//----------------------------------------------------------------
+
+
+
 
 .controller('SocialModuleCtrl1', function($scope,$http) {
 

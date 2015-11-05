@@ -3,12 +3,26 @@ var User = require('../models/user');
 var requestToken="";
 var request=require("request");
 
+
+//initializes the token this must be call inorder to perform every tasks below
 exports.initialize = function (req, res) {
 requestToken=req.body.token;
 res.json({ message: 'session initialized' });
 
 }
 
+
+exports.isthere=function(req,res){
+//console.log('as');
+console.log("sending data of "+req.params.id);
+User.find({ 'id':  req.params.id }, function (err, rcd) {
+		if (err) console.log(err);
+
+		res.json(rcd);
+});	
+}
+
+//save the user name id the mongo database
 exports.save = function (req, res) {
 
 request('https://graph.facebook.com/me?access_token='+requestToken, function (error, response, body) {
@@ -37,7 +51,7 @@ request('https://graph.facebook.com/me?access_token='+requestToken, function (er
 
 
 
-
+//load all the page likes to like field in the document
 exports.loadlikes = function (req, res) {
 //requestToken=req.body.token;
 data=[];

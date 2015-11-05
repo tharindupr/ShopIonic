@@ -25,6 +25,10 @@ router.route('/create')
 	userController.save(req, res)
 	});	
 
+router.route('/isthere/:id')
 
+	.get(function(req, res) {
+	userController.isthere(req, res)
+	});
 
 module.exports = router;
