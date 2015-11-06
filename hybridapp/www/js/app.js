@@ -57,15 +57,26 @@ angular.module('mobile', ['ionic', 'mobile.controllers', 'mobile.services','ngCo
       }
     })
 
-  .state('app.home.social', {
-      url: '/social',
-      views: {
-        'tab-social': {
-          templateUrl: 'templates/social.html'
-       //   controller: 'HomeCtrl'
+    .state('app.home.social', {
+        url: '/social',
+        views: {
+          'tab-social': {
+            templateUrl: 'templates/social.html'
+         //   controller: 'HomeCtrl'
+          }
         }
-      }
-    });
+      })
+    .state('app.home.item', {
+        url: '/item',
+        views: {
+          'tab-social': {
+            templateUrl: 'templates/item.html'
+         //   controller: 'HomeCtrl'
+               }
+           },
+        params:{id:null},
+        controller:'ItemCtrl'
+      });
 
 
 

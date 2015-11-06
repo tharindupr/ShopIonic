@@ -1,4 +1,4 @@
-var requestToken = "CAACEdEose0cBAFH4gcbRoNpnTK0NbZAK2frbp4tdM6Ub9H5eizFHwyxXZARRn9d39mPVrjZCArx3lAa56NTobZBo5MvG1kHyBm7YepDpdi3WCbA2YFByDUl47fNGoFO6vYCPOTZAQ5mat4LM4f8GPNNoN2pJUwH5UQrn7cx7yDYYWpmDaFf0jlOqUZA8X9TqIFDzLj6vT7iQZDZD";
+var requestToken = "CAACEdEose0cBAClk0cQAVqtqxPEcx6faviYWUL46lhoWHUgAuGJ63Oirb5mNjUpS56e3jVy0hXYQIiePqreZAaI8BZCZBFqXO2ZA8WdfkFZCSgG3ch31wi3KSZA31B6HiYASsoNuArZAdO6h22bgHUHeXo5vdCywrltJtyfWFkDxKCWHJbmw7w4oM2Ch23bwx8KCCjPguaV5wZDZD"
 var accessToken = "";
 var clientId = "234756189512-9jqag1kj4034ftpreq46aeda29avgcp0.apps.googleusercontent.com";
 var clientSecret = "0BxGwTi_WPx2II0o78f_jkBH";
@@ -40,7 +40,7 @@ $http.get('https://graph.facebook.com/me?access_token='+requestToken).then(funct
       $scope.name=resp.data.name;            
       userid=resp.data.id; 
 
-      $http.get('http://localhost:8080/api/isthere/'+userid).then(function(resp){
+      $http.get('http://54.179.157.173:8080/api/isthere/'+userid).then(function(resp){
 
              console.log(resp.data.length);  
              if(resp.data.length>0){
@@ -83,6 +83,11 @@ $http.get('https://graph.facebook.com/me/picture?redirect=0&access_token='+reque
                       // err.status will contain the status code
 });
 
+
+$scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    viewData.enableBack = true;
+});
+
 }
 
 
@@ -118,7 +123,7 @@ $http({
 
 .controller('SocialModuleCtrl1', function($scope,$http) {
 
-  $scope.json=[{src:"img/slide1.png"},{src:"img/slide2.png"},{src:"img/slide3.png"}];
+  $scope.json=[{src:"img/slide1.png",id:123},{src:"img/slide2.png",id:124},{src:"img/slide3.png",id:125}];
   //$scope.json=JSON.parse("[{'id':'1', 'src':'img/slide1.png'},{'id':'2', 'src':'img/slide2.png'},{'id':'3', 'src':'img/slide3.png'}]");
  
 
@@ -127,7 +132,7 @@ $http({
 
 .controller('SocialModuleCtrl2', function($scope, $timeout,$stateParams,$http) {
 
-  $scope.json=[{src:"img/headphone.jpg"},{src:"img/headphone1.jpg"},{src:"img/headphone2.jpg"},{src:"img/headphone1.jpg"}];
+  $scope.json=[{src:"img/headphone.jpg",id:126},{src:"img/headphone1.jpg",id:127},{src:"img/headphone2.jpg",id:128},{src:"img/headphone1.jpg",id:129}];
   //$scope.json=JSON.parse("[{'id':'1', 'src':'img/slide1.png'},{'id':'2', 'src':'img/slide2.png'},{'id':'3', 'src':'img/slide3.png'}]");
 
 
@@ -139,7 +144,7 @@ $http({
 
 .controller('SocialModuleCtrl3', function($scope, $timeout,$stateParams) {
 
-  $scope.json=[{src:"img/headphone.jpg"},{src:"img/headphone1.jpg"},{src:"img/headphone2.jpg"},{src:"img/headphone1.jpg"}];
+  $scope.json=[{src:"img/headphone.jpg",id:131},{src:"img/headphone1.jpg",id:132},{src:"img/headphone2.jpg",id:134},{src:"img/headphone1.jpg",id:135}];
   //$scope.json=JSON.parse("[{'id':'1', 'src':'img/slide1.png'},{'id':'2', 'src':'img/slide2.png'},{'id':'3', 'src':'img/slide3.png'}]");
 
 })
@@ -193,4 +198,26 @@ $http({
   $scope.settings = {
     enableFriends: true
   };
+})
+
+
+
+.controller('ItemCtrl', function($scope,$state,$stateParams,$ionicPopup,IsThere) {
+  
+  console.log($stateParams);
+
+
+    $scope.showAlert = function() {
+     var alertPopup = $ionicPopup.alert({
+       title: 'Successfull',
+       template: 'You bought the item'+$stateParams.id
+     });
+     alertPopup.then(function(res) {
+       console.log('popuped');
+     });
+   };
+
+
+  $scope.session = IsThere.get({id:4441624615381 });
+
 });

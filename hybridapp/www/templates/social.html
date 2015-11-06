@@ -16,7 +16,7 @@
 <ion-scroll  direction="y" style="width: 100%; height: 85%">
 <div ng-controller="SocialModuleCtrl1">
 <ion-slide-box direction="xy" on-slide-changed="slideHasChanged($index)" show-pager="false" >
-  <ion-slide ng-repeat="item in json">
+  <ion-slide ng-repeat="item in json" ui-sref="app.home.item({id:{{item['id']}}})">
  		{{accessToken}}
 
      <img style="max-width: 100%;" class="img-responsive" src="{{item['src']}}">
@@ -37,7 +37,7 @@
 
 <div class="row responsive-sm" ng-controller="SocialModuleCtrl2">
 <ion-scroll direction="x" paging"true" class="wide-as-needed" style="overflow: hidden;">
-	<a ng-repeat="item in json" href="#/app/item/123"><img style="width:120px;height:90px;" class="button button-light img-responsiv img-thumbnail" 
+	<a ng-repeat="item in json" ui-sref="app.home.item({id:{{item['id']}}})"><img style="width:120px;height:90px;" class="button button-light img-responsiv img-thumbnail" 
 	src="{{item['src']}}"></a>
 			
 </ion-scroll>
@@ -54,7 +54,7 @@
 
 <div class="row responsive-sm" ng-controller="SocialModuleCtrl3">
 <ion-scroll direction="x" class="wide-as-needed" style="overflow: hidden; font-size:10px">
-			<div ng-repeat="item in json" class="button button-light btn-default" style="width:250px; height:150px;">
+			<div ng-repeat="item in json" ui-sref="app.home.item({id:{{item['id']}}})"class="button button-light btn-default" style="width:250px; height:150px;">
 			<div class="row">
 			  <div class="col-md-8"> 
 			  	<img style="width:120px;height:120px;" src="img/iphone.jpg">
