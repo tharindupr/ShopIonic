@@ -1,4 +1,4 @@
-var requestToken = "CAACEdEose0cBAKXp3XB586ocxCVpcxOYj7tIScgddGBfs8dQ3Rp1XT8pz2iXlAsFZAf6poHQVsiENZCslvbFZAZBeyQNJg4Ott3qbSfObYaLTHduJRnBHZAVhz5M2ZCIhqZBttZBJOnjLl8hmdGgW63WjhK3Y5pjVxwSZAk2dkIlwdthE9XFjTyjNyeyrEVvy8CFKfqM25v6gcwZDZD"
+var requestToken = "CAACEdEose0cBAGQAI6LUA6wT9NP7tnWc23ptYzyEl6mYA92s1bokN4tlZAUhTXNUvSTtZA8QA0hcbBhcYKZC1nz76wL5jbU8seNAymSJOGRK5YYRbotZBgXajYtZAVIZA7bHa7gzBxZBWIoR9jc0MMfFoyxI7T2u2PmqcZAZCIY8c2yZCyYmDIPKWMtU31NTRxpuVvLGPlVpcxIwZDZD"
 var accessToken = "";
 var clientId = "234756189512-9jqag1kj4034ftpreq46aeda29avgcp0.apps.googleusercontent.com";
 var clientSecret = "0BxGwTi_WPx2II0o78f_jkBH";
@@ -177,8 +177,4 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
      });
    };
 
-
-  User.isThere(773160849457002).then(function(resp){console.log(resp);});
-  //var data=$scope.session.query();
-  //console.log($scope.session );
 });

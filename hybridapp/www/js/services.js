@@ -1,4 +1,4 @@
-var storeApi="http://localhost:8080";
+var storeApi="http://54.179.157.173:8080";
 angular.module('mobile.services', ['ngResource'])
 
 
@@ -67,13 +67,26 @@ angular.module('mobile.services', ['ngResource'])
 
 
 
-      function buy(productId){
+      function buy(userid,productId,productName){
+
+              var q=$q.defer();
+              $http({
+                          method: 'POST',
+                          url: storeApi+'/api/user/buy/'+userid,
+                          headers: {'Content-Type': 'application/json'},
+                          data: {productId:productId,productName:productName}
+                      }).success(function (res,status) {
+                        q.resolve(res);
+                        //alert(JSON.stringify(res));
+                      });
+
+              return q.promise;
 
 
       }
 
 
-      return{isThere:isThere,create:create,initialize:initialize}
+      return{isThere:isThere,create:create,initialize:initialize,buy:buy}
 })
 
 

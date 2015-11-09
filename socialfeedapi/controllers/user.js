@@ -66,6 +66,26 @@ request('https://graph.facebook.com/me?access_token='+requestToken, function (er
 });
 }
 
+exports.buy=function(req,res){
+
+	var id=req.params.id;
+	var product=req.params.product;
+	res.json({ message: 'done!' });
+	console.log(id);
+	console.log(product);
+	var item = req.body[0];
+ 
+// find by document id and update
+	User.findOneAndUpdate(
+    {id: req.params.id},
+    {$push: {purchasedItems: item}},
+    {safe: true, upsert: true},
+    function(err, model) {
+        console.log(err);
+    }
+);
+}
+
 
 
 //load all the page likes to like field in the document
