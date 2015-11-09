@@ -1,4 +1,4 @@
-var requestToken = "CAACEdEose0cBAClk0cQAVqtqxPEcx6faviYWUL46lhoWHUgAuGJ63Oirb5mNjUpS56e3jVy0hXYQIiePqreZAaI8BZCZBFqXO2ZA8WdfkFZCSgG3ch31wi3KSZA31B6HiYASsoNuArZAdO6h22bgHUHeXo5vdCywrltJtyfWFkDxKCWHJbmw7w4oM2Ch23bwx8KCCjPguaV5wZDZD"
+var requestToken = "CAACEdEose0cBAKXp3XB586ocxCVpcxOYj7tIScgddGBfs8dQ3Rp1XT8pz2iXlAsFZAf6poHQVsiENZCslvbFZAZBeyQNJg4Ott3qbSfObYaLTHduJRnBHZAVhz5M2ZCIhqZBttZBJOnjLl8hmdGgW63WjhK3Y5pjVxwSZAk2dkIlwdthE9XFjTyjNyeyrEVvy8CFKfqM25v6gcwZDZD"
 var accessToken = "";
 var clientId = "234756189512-9jqag1kj4034ftpreq46aeda29avgcp0.apps.googleusercontent.com";
 var clientSecret = "0BxGwTi_WPx2II0o78f_jkBH";
@@ -6,7 +6,7 @@ var loginfrom="";
 var userid="";
 angular.module('mobile.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,$ionicHistory,$http) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,$ionicHistory,$http,Facebook,User) {
   function ContentController($scope, $ionicSideMenuDelegate) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
@@ -34,53 +34,34 @@ if(loginfrom=="google"){
 
 else if(loginfrom="facebook")
 {
-//getting the user name and photo from facebook
-$http.get('https://graph.facebook.com/me?access_token='+requestToken).then(function(resp) {   
-               
-      $scope.name=resp.data.name;            
-      userid=resp.data.id; 
 
-      $http.get('http://54.179.157.173:8080/api/isthere/'+userid).then(function(resp){
+User.initialize(requestToken).then(function(res){
+    //getting the latest name and the profile picture from the facebook
+    Facebook.getDetails(requestToken).then(function(data){
+       $scope.name=data.name
+        userid=data.id; 
+        console.log(userid);
+        //checking the user id is available in the mongo database
+        User.isThere(userid).then(function(userinfo){
+          if(userinfo.length<1){
 
-             console.log(resp.data.length);  
-             if(resp.data.length>0){
-                      $http({
-                          method: 'POST',
-                          url: 'http://54.179.157.173:8080/api/create',
-                          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                          transformRequest: function(obj) {
-                              var str = [];
-                              for(var p in obj)
-                              str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                              return str.join("&");
-                          },
-                          data: {token: requestToken }
-                      }).success(function (res,status) {
+            User.create(requestToken).then(function(res){
 
-                        alert(JSON.stringify(res));
-                      });
+                      console.log(res);
+            });
 
+          }
+           
+        });
 
-             }  
+    });
 
-      } ,function(err){console.log(err)});           
-                    
-                      // For JSON responses, resp.data contains the result
-}, function(err) {
-    alert(JSON.stringify(err));
-                      // err.status will contain the status code
-});
+    console.log(res);
+})
 
-
-$http.get('https://graph.facebook.com/me/picture?redirect=0&access_token='+requestToken).then(function(resp) {
-    $scope.img=resp.data.data.url;               
-                    
-                    
-                    
-                      // For JSON responses, resp.data contains the result
-}, function(err) {
-    alert(JSON.stringify(err));
-                      // err.status will contain the status code
+//getting the user photo from facebook
+Facebook.getImage(requestToken).then(function(url){
+  $scope.img=url;
 });
 
 
@@ -90,27 +71,6 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
 
 }
 
-
-
-/*
-
-$http({
-    method: 'POST',
-    url: 'http://54.179.157.173:8080/api/user',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    transformRequest: function(obj) {
-        var str = [];
-        for(var p in obj)
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        return str.join("&");
-    },
-    data: {token: requestToken }
-}).success(function (res,status) {
-
-  alert(JSON.stringify(res));
-});
-
-*/
 
 
 })
@@ -202,9 +162,9 @@ $http({
 
 
 
-.controller('ItemCtrl', function($scope,$state,$stateParams,$ionicPopup,IsThere) {
+.controller('ItemCtrl', function($scope,$state,$stateParams,$ionicPopup,User) {
   
-  console.log($stateParams);
+ // console.log($stateParams);
 
 
     $scope.showAlert = function() {
@@ -218,6 +178,7 @@ $http({
    };
 
 
-  $scope.session = IsThere.get({id:4441624615381 });
-
+  User.isThere(773160849457002).then(function(resp){console.log(resp);});
+  //var data=$scope.session.query();
+  //console.log($scope.session );
 });

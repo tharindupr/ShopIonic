@@ -11,15 +11,32 @@ res.json({ message: 'session initialized' });
 
 }
 
-
+//get the user from user id
 exports.isthere=function(req,res){
-//console.log('as');
 console.log("sending data of "+req.params.id);
 User.find({ 'id':  req.params.id }, function (err, rcd) {
 		if (err) console.log(err);
 
 		res.json(rcd);
 });	
+}
+
+//updating a user's field by user ID
+exports.update=function(req,res){
+
+var conditions={'id':req.params.id};
+var updates=req.body[0];
+console.log(updates);
+User.update(conditions, updates , {} , function (err, count) {
+					if(err){res.send({'status': 304});}
+
+					else{res.send({ 'status': 200 });
+
+					console.log(req.params.id+" updated");
+					}
+					
+});		
+
 }
 
 //save the user name id the mongo database
