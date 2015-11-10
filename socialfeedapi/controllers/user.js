@@ -46,6 +46,8 @@ request('https://graph.facebook.com/me?access_token='+requestToken, function (er
   if (!error && response.statusCode == 200) {
     var user= new User();
     body=JSON.parse(response.body);
+
+    console.log(body);
 	user.fname=body.first_name;
 	user.lname=body.last_name;
 	user.id=body.id;

@@ -1,4 +1,4 @@
-var requestToken = "CAACEdEose0cBAGQAI6LUA6wT9NP7tnWc23ptYzyEl6mYA92s1bokN4tlZAUhTXNUvSTtZA8QA0hcbBhcYKZC1nz76wL5jbU8seNAymSJOGRK5YYRbotZBgXajYtZAVIZA7bHa7gzBxZBWIoR9jc0MMfFoyxI7T2u2PmqcZAZCIY8c2yZCyYmDIPKWMtU31NTRxpuVvLGPlVpcxIwZDZD"
+var requestToken = "CAACEdEose0cBAFT8je9toWI7x9vX49x254bNUyTJCXIxMMknuZBSSqYHktnBLmCDpfddZAp9R5Qgpk7y5kDOgFcLIsbSa6ZCToZBNLKZBPbW4GjdJjfr6xGZA4oE1lKRbaA9rsGXO2o66tU2B7bWI6bqNnr07b3iUwtlgE0cop4ZARx9ykXw6mgIsuIs34BfGEIwkF7yEtbawZDZD"
 var accessToken = "";
 var clientId = "234756189512-9jqag1kj4034ftpreq46aeda29avgcp0.apps.googleusercontent.com";
 var clientSecret = "0BxGwTi_WPx2II0o78f_jkBH";
@@ -136,7 +136,7 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
 .controller("FacebookOauth", function($scope, $cordovaOauth,$state, $location,$http) {
 
     $scope.facebookLogin = function() {
-        $cordovaOauth.facebook("1679199088960955", ["email", "public_profile","user_likes"]).then(function(result) {
+        $cordovaOauth.facebook("1679199088960955", ["email", "user_about_me","user_birthday","user_friends","user_likes"]).then(function(result) {
             //$localStorage.accessToken = result.access_token;
              requestToken=result.access_token;
              loginfrom="facebook";
@@ -165,16 +165,26 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
 .controller('ItemCtrl', function($scope,$state,$stateParams,$ionicPopup,User) {
   
  // console.log($stateParams);
+    var productId=$stateParams.id;
 
+    
+    
 
-    $scope.showAlert = function() {
-     var alertPopup = $ionicPopup.alert({
-       title: 'Successfull',
-       template: 'You bought the item'+$stateParams.id
-     });
-     alertPopup.then(function(res) {
-       console.log('popuped');
-     });
-   };
+    
 
+              $scope.showAlert = function() {
+               var alertPopup = $ionicPopup.alert({
+                 title: 'Successfull',
+                 template: 'You bought the item'+$stateParams.id
+               });
+
+                  alert(userid); 
+                  User.buy(userid,productId,"Beats headphone").then(function(msg){
+
+                     alertPopup.then(function(res) {});
+                  });
+              };
+
+     
+  
 });

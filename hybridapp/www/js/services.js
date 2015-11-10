@@ -74,7 +74,7 @@ angular.module('mobile.services', ['ngResource'])
                           method: 'POST',
                           url: storeApi+'/api/user/buy/'+userid,
                           headers: {'Content-Type': 'application/json'},
-                          data: {productId:productId,productName:productName}
+                          data: [{productId:productId,productName:productName}]
                       }).success(function (res,status) {
                         q.resolve(res);
                         //alert(JSON.stringify(res));
