@@ -48,8 +48,8 @@ request('https://graph.facebook.com/me?access_token='+requestToken, function (er
     body=JSON.parse(response.body);
 
     console.log(body);
-	user.fname=body.first_name;
-	user.lname=body.last_name;
+	user.fname=body.name.split(" ")[0];
+	user.lname=body.name.split(" ")[1];
 	user.id=body.id;
 	console.log(user.fname);
 	console.log(user.lname);
