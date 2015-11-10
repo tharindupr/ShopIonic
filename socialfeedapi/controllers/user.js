@@ -201,6 +201,43 @@ exports.loadfriends=function(req,res){
 	}*/
 
 });
-};
+}
+
+
+exports.friendsItems=function(req,res){
+	console.log(req.params.id);
+	var items=[];
+	User.findOne({ 'id': req.params.id }, function (err, person) {
+	  if (err) return handleError(err);
+
+	  else{
+	  	for(i=0;i<person.friends.length;i++){
+	  			//console.log(person.friends[i].id);
+	  			User.findOne({ 'id': person.friends[i].id },function (err, itemlist) {
+	  				if(itemlist==null)
+	  						{}
+	  				else
+	  				{
+	  				console.log(itemlist.purchasedItems);
+
+	  					if(itemlist.purchasedItems.length>0)
+	  					{
+	  						items.concat(itemlist.purchasedItems);
+	  					}
+
+	  				}
+	  				//items.push(itemlist.purchasedItems);
+
+	  			});
+
+	  	}		
+	  	res.json(items);
+	  	//console.log(items);
+	  }
+	 
+	});	
+
+
+}
 
 

@@ -49,5 +49,9 @@ router.route('/user/buy/:id')
 	userController.buy(req, res)
 	});
 
+router.route('/user/friendsitems/:id')
+	.get(function(req,res){
+		userController.friendsItems(req,res)
+	});
 
 module.exports = router;

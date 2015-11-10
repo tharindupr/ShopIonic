@@ -55,7 +55,7 @@ User.initialize(requestToken).then(function(res){
         });
 
 
-        User.updateFriends(userid);
+        User.updateFriends(userid).then(function(code){alert(JSON.stringify(code));});
 
     });
 
