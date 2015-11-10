@@ -8,7 +8,7 @@ var request=require("request");
 exports.initialize = function (req, res) {
 requestToken=req.body.token;
 res.json({ message: 'session initialized' });
-
+//console.log(requestToken);
 }
 
 //get the user from user id
@@ -41,13 +41,13 @@ User.update(conditions, updates , {} , function (err, count) {
 
 //save the user name id the mongo database
 exports.save = function (req, res) {
-
 request('https://graph.facebook.com/me?access_token='+requestToken, function (error, response, body) {
   if (!error && response.statusCode == 200) {
     var user= new User();
+    console.log(body);
     body=JSON.parse(response.body);
 
-    console.log(body);
+    
 	user.fname=body.name.split(" ")[0];
 	user.lname=body.name.split(" ")[1];
 	user.id=body.id;
@@ -73,8 +73,8 @@ exports.buy=function(req,res){
 	var id=req.params.id;
 	var product=req.params.product;
 	res.json({ message: 'done!' });
-	console.log(id);
-	console.log(product);
+	//console.log(id);
+	//console.log(product);
 	var item = req.body[0];
  
 // find by document id and update
@@ -97,7 +97,7 @@ data=[];
 likelist=[];
 function callback1(error,response,body){
 			if(error){
-					//console.log(data[1][0])				 
+			console.log(data);				 
 				for (i=0 ;i<data.length;i++){
 					for(j=0;j<data[i].length;j++)
 						try{
@@ -170,6 +170,37 @@ getlikes("https://graph.facebook.com/me/likes?limit=999&access_token="+requestTo
 
 
 	//console.log(data);
+}
+
+
+
+
+exports.loadfriends=function(req,res){
+	console.log(requestToken);
+	request('https://graph.facebook.com/me/friends?limit=999&access_token='+requestToken, function (error, response, body) {
+  	if (!error && response.statusCode == 200) {
+    
+    body=JSON.parse(response.body);
+    console.log(body.data);
+
+    User.update({'id': req.params.id}, {'friends':body.data} , {} , function (err, count) {
+					if (err) console.log(err);
+					res.send({ 'status': 200 });
+				});		
+
+
+    }
+
+    else{
+    	res.json(error);
+    }
+/*	user.save(function(err) {
+	if (err) res.send(err);
+	res.json({ message: 'created!' });
+	});
+	}*/
+
+});
 };
 
 

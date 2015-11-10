@@ -22,6 +22,12 @@ router.route('/user/loadlikes')
 	userController.loadlikes(req, res)
 	});
 
+router.route('/user/loadfriends/:id')
+
+	.post(function(req, res) {
+	userController.loadfriends(req, res)
+	});
+
 router.route('/user/update/:id')
 
 	.post(function(req, res) {
