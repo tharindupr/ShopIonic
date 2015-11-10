@@ -1,4 +1,4 @@
-var requestToken = "CAACEdEose0cBAFT8je9toWI7x9vX49x254bNUyTJCXIxMMknuZBSSqYHktnBLmCDpfddZAp9R5Qgpk7y5kDOgFcLIsbSa6ZCToZBNLKZBPbW4GjdJjfr6xGZA4oE1lKRbaA9rsGXO2o66tU2B7bWI6bqNnr07b3iUwtlgE0cop4ZARx9ykXw6mgIsuIs34BfGEIwkF7yEtbawZDZD"
+var requestToken = "CAACEdEose0cBAHaHGXQcYpcEXeWgHCXaN0JLYrvDczbJlBvca7Fcv7ahqQ30AElo0FloDzUX0HmrHRZBDaZAIZC8vtM0Kiu9jf46ilyT01nswkrzZCoriXR3RPqNrDXqwcKgsVl4R1ZCM1HJfnfV7SoT9ZAhFXIe2UhqbHcxDi19NvZBKpoduvY7uIXmwBxqCYPTy7NI337NQZDZD"
 var accessToken = "";
 var clientId = "234756189512-9jqag1kj4034ftpreq46aeda29avgcp0.apps.googleusercontent.com";
 var clientSecret = "0BxGwTi_WPx2II0o78f_jkBH";
@@ -54,6 +54,9 @@ User.initialize(requestToken).then(function(res){
            
         });
 
+
+        User.updateFriends(userid);
+
     });
 
     console.log(res);
@@ -63,6 +66,8 @@ User.initialize(requestToken).then(function(res){
 Facebook.getImage(requestToken).then(function(url){
   $scope.img=url;
 });
+
+
 
 
 $scope.$on('$ionicView.beforeEnter', function (event, viewData) {

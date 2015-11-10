@@ -85,8 +85,25 @@ angular.module('mobile.services', ['ngResource'])
 
       }
 
+      function updateFriends(userid){
 
-      return{isThere:isThere,create:create,initialize:initialize,buy:buy}
+           var q=$q.defer();
+              $http({
+                          method: 'POST',
+                          url: storeApi+'/api/user/loadfriends/'+userid,
+                          headers: {'Content-Type': 'application/json'},
+                      }).success(function (res,status) {
+                        q.resolve(res);
+                        //alert(JSON.stringify(res));
+                      });
+
+              return q.promise;
+
+
+      }
+
+
+      return{isThere:isThere,create:create,initialize:initialize,buy:buy,updateFriends:updateFriends}
 })
 
 

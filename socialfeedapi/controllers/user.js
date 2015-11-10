@@ -181,7 +181,7 @@ exports.loadfriends=function(req,res){
   	if (!error && response.statusCode == 200) {
     
     body=JSON.parse(response.body);
-    console.log(body.data);
+    //console.log(body.data);
 
     User.update({'id': req.params.id}, {'friends':body.data} , {} , function (err, count) {
 					if (err) console.log(err);
