@@ -103,7 +103,23 @@ angular.module('mobile.services', ['ngResource'])
       }
 
 
-      return{isThere:isThere,create:create,initialize:initialize,buy:buy,updateFriends:updateFriends}
+      function friendsItems(userid){
+
+              var q=$q.defer();
+              $http({
+                          method: 'GET',
+                          url: storeApi+'/api/user/friendsitems/'+userid
+                      }).success(function (res,status) {
+                        q.resolve(res);
+                        //alert(JSON.stringify(res));
+                      });
+
+              return q.promise;
+
+      }
+
+
+      return{isThere:isThere,create:create,initialize:initialize,buy:buy,updateFriends:updateFriends,friendsItems:friendsItems}
 })
 
 

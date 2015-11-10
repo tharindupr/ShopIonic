@@ -1,4 +1,4 @@
-var requestToken = "CAACEdEose0cBAHaHGXQcYpcEXeWgHCXaN0JLYrvDczbJlBvca7Fcv7ahqQ30AElo0FloDzUX0HmrHRZBDaZAIZC8vtM0Kiu9jf46ilyT01nswkrzZCoriXR3RPqNrDXqwcKgsVl4R1ZCM1HJfnfV7SoT9ZAhFXIe2UhqbHcxDi19NvZBKpoduvY7uIXmwBxqCYPTy7NI337NQZDZD"
+var requestToken = "CCAACEdEose0cBACOC4hZCSZAHZCpNQvQZAY9Wnfqqe4XrfTFTt3W1WZAg6Bb914U8IIlfAwqXcUVtt9BGqzuhGLq8732CJPMZBVUT3YqeJrUHsZBwthjhPskjRaNnN7qKbDHhYGiZC7xlwko12SSFgrSBGGB0lhgsafPra4DvmNA0yds7Xw7d8deVJxhvXNWMfZAV04ZBE8IgRTUwZDZD"
 var accessToken = "";
 var clientId = "234756189512-9jqag1kj4034ftpreq46aeda29avgcp0.apps.googleusercontent.com";
 var clientSecret = "0BxGwTi_WPx2II0o78f_jkBH";
@@ -56,6 +56,11 @@ User.initialize(requestToken).then(function(res){
 
 
         User.updateFriends(userid).then(function(code){alert(JSON.stringify(code));});
+        User.friendsItems(userid).then(function(re){
+
+            alert(re);
+        });
+
 
     });
 
@@ -86,7 +91,7 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
 
 
 
-.controller('SocialModuleCtrl1', function($scope,$http) {
+.controller('SocialModuleCtrl1', function($scope,$http,User) {
 
   $scope.json=[{src:"img/slide1.png",id:123},{src:"img/slide2.png",id:124},{src:"img/slide3.png",id:125}];
   //$scope.json=JSON.parse("[{'id':'1', 'src':'img/slide1.png'},{'id':'2', 'src':'img/slide2.png'},{'id':'3', 'src':'img/slide3.png'}]");
@@ -95,13 +100,12 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
 })
 
 
-.controller('SocialModuleCtrl2', function($scope, $timeout,$stateParams,$http) {
+.controller('SocialModuleCtrl2', function($scope, $timeout,$stateParams,$http,User) {
 
   $scope.json=[{src:"img/headphone.jpg",id:126},{src:"img/headphone1.jpg",id:127},{src:"img/headphone2.jpg",id:128},{src:"img/headphone1.jpg",id:129}];
   //$scope.json=JSON.parse("[{'id':'1', 'src':'img/slide1.png'},{'id':'2', 'src':'img/slide2.png'},{'id':'3', 'src':'img/slide3.png'}]");
 
-
-
+  
 
 
 //alert(requestToken);

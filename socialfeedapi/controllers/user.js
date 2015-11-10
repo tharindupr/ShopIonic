@@ -222,7 +222,7 @@ exports.friendsItems=function(req,res){
 
 	  					if(itemlist.purchasedItems.length>0)
 	  					{
-	  						items.concat(itemlist.purchasedItems);
+	  						items.push(itemlist.purchasedItems);
 	  					}
 
 	  				}
