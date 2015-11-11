@@ -211,7 +211,7 @@ exports.friendsItems=function(req,res){
 	  if (err) return handleError(err);
 
 	  else{
-	  	for(i=0;i<=person.friends.length;i++){
+	  	for(i=0;i<person.friends.length;i++){
 	  			//console.log(person.friends[i].id);
 
 	  			User.findOne({ 'id': person.friends[i].id },function (err, itemlist) {
