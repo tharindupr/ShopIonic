@@ -211,8 +211,14 @@ exports.friendsItems=function(req,res){
 	  if (err) return handleError(err);
 
 	  else{
-	  	for(i=0;i<person.friends.length;i++){
+	  	for(i=0;i<=person.friends.length;i++){
 	  			//console.log(person.friends[i].id);
+	  			if(i==person.friends.length){
+	  					res.json(items);
+	  			}
+
+	  			else{
+
 	  			User.findOne({ 'id': person.friends[i].id },function (err, itemlist) {
 	  				if(itemlist==null)
 	  						{}
@@ -229,10 +235,10 @@ exports.friendsItems=function(req,res){
 	  				//items.push(itemlist.purchasedItems);
 
 	  			});
-
+	  		}
 	  	}		
-	  	res.json(items);
-	  	//console.log(items);
+	  	
+	 
 	  }
 	 
 	});	
