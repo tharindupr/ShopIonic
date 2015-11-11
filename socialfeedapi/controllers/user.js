@@ -235,6 +235,8 @@ exports.friendsItems=function(req,res){
 	  					console.log(items);
 	  				}
 
+
+	  				
 	  			});
 	  		
 	  	}		
@@ -244,7 +246,7 @@ exports.friendsItems=function(req,res){
 	 
 	});	
 
-res.json({'a':'b'});
+
 }
 
 
