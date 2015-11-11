@@ -214,22 +214,15 @@ exports.friendsItems=function(req,res){
 	  	for(i=0;i<person.friends.length;i++){
 	  			//console.log(person.friends[i].id);
 	  				
-	  				
-	  			User.findOne({ 'id': person.friends[i].id },function (err, itemlist) {
-
-	  				console.log('i='+i);
-	  				console.log('x='+(person.friends.length)-1);
-	  				
-	  					if(i==((person.friends.length)-1)){
-			  					res.json({'a':'b'});
-			  					console.log(items);
-	  					}
+	  			id=	person.friends[i].id;
+	  			User.findOne({ 'id': id },function (err, itemlist) {
 
 	  				if(itemlist==null)
 	  						{}
 	  				else
 	  				{
-	  				console.log(itemlist.purchasedItems);
+	  				js='{'+itemlist.id+':'+itemlist.purchasedItems+'}';
+	  				console.log(js);
 
 	  					if(itemlist.purchasedItems.length>0)
 	  					{
@@ -252,6 +245,9 @@ exports.friendsItems=function(req,res){
 	  }
 	 
 	});	
+
+
+
 
 
 }
