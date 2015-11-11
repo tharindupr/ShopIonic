@@ -51,7 +51,7 @@ router.route('/user/buy/:id')
 
 router.route('/user/friendsitems/:id')
 	.get(function(req,res){
-		userController.friendsItems(req,res)
+		userController.loadFriendsItems(req,res)
 	});
 
 module.exports = router;

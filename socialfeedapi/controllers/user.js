@@ -204,7 +204,7 @@ exports.loadfriends=function(req,res){
 }
 
 
-exports.friendsItems=function(req,res){
+exports.loadFriendsItems=function(req,res){
 	console.log(req.params.id);
 	var items=[];
 	User.findOne({ 'id': req.params.id }, function (err, person) {
@@ -255,7 +255,7 @@ exports.friendsItems=function(req,res){
 
 
 
-
+res.json('status':200);
 
 }
 
