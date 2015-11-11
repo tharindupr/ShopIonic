@@ -214,6 +214,7 @@ exports.friendsItems=function(req,res){
 	  	for(i=0;i<person.friends.length;i++){
 	  			//console.log(person.friends[i].id);
 	  				console.log('i='+i);
+	  				console.log('x='+person.friends.length);
 	  			User.findOne({ 'id': person.friends[i].id },function (err, itemlist) {
 	  				if(itemlist==null)
 	  						{}
