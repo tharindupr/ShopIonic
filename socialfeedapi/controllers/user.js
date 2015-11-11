@@ -231,7 +231,7 @@ exports.friendsItems=function(req,res){
 	  				//items.push(itemlist.purchasedItems);
 
 	  				if(i==person.friends.length-1){
-	  					res.json(items);
+	  					res.json({'a':'b'});
 	  					console.log(items);
 	  				}
 
