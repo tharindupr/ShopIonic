@@ -255,7 +255,7 @@ exports.loadFriendsItems=function(req,res){
 
 
 
-res.json('status':200);
+res.json({'status':200});
 
 }
 
