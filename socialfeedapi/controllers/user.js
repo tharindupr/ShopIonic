@@ -228,16 +228,17 @@ exports.friendsItems=function(req,res){
 	  					}
 
 
+
+	  				}
+	  				//items.push(itemlist.purchasedItems);
+
+	  				console.log('x='+person.friends.length-1);
+	  				console.log('i='+i);
 	  					if(i==person.friends.length-1){
 			  					res.json({'a':'b'});
 			  					console.log(items);
 	  					}
 
-
-	  				}
-	  				//items.push(itemlist.purchasedItems);
-
-	  				
 
 	  				
 	  			});
