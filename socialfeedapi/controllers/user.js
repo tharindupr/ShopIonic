@@ -213,9 +213,8 @@ exports.friendsItems=function(req,res){
 	  else{
 	  	for(i=0;i<person.friends.length;i++){
 	  			//console.log(person.friends[i].id);
-	  				console.log('i='+i);
-	  				console.log('x='+person.friends.length);
-	  				console.log('x='+((person.friends.length)-1));
+	  				
+	  				
 	  			User.findOne({ 'id': person.friends[i].id },function (err, itemlist) {
 	  				if(itemlist==null)
 	  						{}
@@ -233,10 +232,10 @@ exports.friendsItems=function(req,res){
 
 	  				}
 	  				//items.push(itemlist.purchasedItems);
-
+	  				console.log('i='+i);
 	  				console.log('x='+(person.friends.length)-1);
 	  				
-	  					if(i==person.friends.length-1){
+	  					if(i==((person.friends.length)-1)){
 			  					res.json({'a':'b'});
 			  					console.log(items);
 	  					}
