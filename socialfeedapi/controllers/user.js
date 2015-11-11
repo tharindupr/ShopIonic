@@ -222,11 +222,18 @@ exports.friendsItems=function(req,res){
 	  				else
 	  				{
 	  				js='{'+itemlist.id+':'+itemlist.purchasedItems+'}';
-	  				console.log(js);
+	  				
 
 	  					if(itemlist.purchasedItems.length>0)
 	  					{
-	  						items.push(itemlist.purchasedItems);
+	  						User.findOneAndUpdate(
+							    {id: req.params.id},
+							    {$push: {friendsItems: itemlist.purchasedItems}},
+							    {safe: true, upsert: true},
+							    function(err, model) {
+							        console.log(err);
+							});
+			  				
 	  						
 	  					}
 
