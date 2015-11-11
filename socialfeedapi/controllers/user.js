@@ -224,17 +224,20 @@ exports.friendsItems=function(req,res){
 	  					if(itemlist.purchasedItems.length>0)
 	  					{
 	  						items.push(itemlist.purchasedItems);
-	  						console.log(items);
+	  						
 	  					}
+
+
+	  					if(i==person.friends.length-1){
+			  					res.json({'a':'b'});
+			  					console.log(items);
+	  					}
+
 
 	  				}
 	  				//items.push(itemlist.purchasedItems);
 
-	  				if(i==person.friends.length-1){
-	  					res.json({'a':'b'});
-	  					console.log(items);
-	  				}
-
+	  				
 
 	  				
 	  			});
