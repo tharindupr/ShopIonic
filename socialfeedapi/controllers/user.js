@@ -214,6 +214,7 @@ exports.friendsItems=function(req,res){
 	  	for(i=0;i<=person.friends.length;i++){
 	  			//console.log(person.friends[i].id);
 	  			if(i==person.friends.length){
+	  					console.log(items);
 	  					res.json(items);
 	  			}
 
