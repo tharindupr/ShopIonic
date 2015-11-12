@@ -64,4 +64,9 @@ router.route('/product')
 		productController.see(req,res)
 	});
 
+router.route('/product/:id')
+	.get(function(req,res){
+		productController.getbyId(req,res)
+	});
+
 module.exports = router;

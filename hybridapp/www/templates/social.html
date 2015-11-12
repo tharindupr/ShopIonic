@@ -37,8 +37,8 @@
 
 <div class="row responsive-sm" ng-controller="SocialModuleCtrl2">
 <ion-scroll direction="x" paging"true" class="wide-as-needed" style="overflow: hidden;">
-	<a ng-repeat="item in json" ui-sref="app.home.item({id:{{item['id']}}})"><img style="width:120px;height:90px;" class="button button-light img-responsiv img-thumbnail" 
-	src="{{item['src']}}"></a>
+	<a ng-repeat="item in json" ui-sref="app.home.item({id:item.productID})"><img style="width:120px;height:90px;" class="button button-light img-responsiv img-thumbnail" 
+	src="{{item['miniURL']}}"></a>
 			
 </ion-scroll>
 </div>

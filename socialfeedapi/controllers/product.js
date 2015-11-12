@@ -23,6 +23,14 @@ if (err)
 }); 
 };
 
+
+exports.getbyId = function(req, res) {
+	Product.find({ 'productID':  req.params.id }, function (err, rcd) {
+		if (err) console.log(err);
+		res.json(rcd);
+	});
+};
+
 /*
 exports.updatename = function (req, res) {
 	Product.update({ 'name':  req.params.name}, req.body , {} , function (err, count) {

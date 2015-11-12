@@ -74,7 +74,7 @@ angular.module('mobile', ['ionic', 'mobile.controllers', 'mobile.services','ngCo
          //   controller: 'HomeCtrl'
                }
            },
-        params:{id:null},
+        params:{id:'00001'},
         controller:'ItemCtrl'
       });
 

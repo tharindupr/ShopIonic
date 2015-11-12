@@ -110,9 +110,14 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
 })
 
 
-.controller('SocialModuleCtrl2', function($scope, $timeout,$stateParams,$http,User) {
+.controller('SocialModuleCtrl2', function($scope, $timeout,$stateParams,$http,Product) {
 
-  $scope.json=[{src:"img/headphone.jpg",id:126},{src:"img/headphone1.jpg",id:127},{src:"img/headphone2.jpg",id:128},{src:"img/headphone1.jpg",id:129}];
+  Product.getProduct().then(function(res){
+
+    $scope.json=res;
+    console.log(res);
+  });
+  //$scope.json=[{src:"http://54.179.157.173/Products/00001/00001.png",id:126},{src:"http://54.179.157.173/Products/00002/00002.png",id:127},{src:"http://54.179.157.173/Products/00003/00003.png",id:128},{src:"http://54.179.157.173/Products/00004/00004.png",id:129}];
   //$scope.json=JSON.parse("[{'id':'1', 'src':'img/slide1.png'},{'id':'2', 'src':'img/slide2.png'},{'id':'3', 'src':'img/slide3.png'}]");
 
   
