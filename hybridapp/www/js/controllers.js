@@ -46,6 +46,13 @@ User.initialize(requestToken).then(function(res){
           if(userinfo.length<1){
 
             User.create(requestToken).then(function(res){
+                       User.updateFriends(userid).then(function(code){
+                                  //alert(JSON.stringify(code));
+                                  User.friendsItems(userid).then(function(re){
+                                                   // alert("Friends and Items Loaded");
+                                });
+
+                        });
 
                       console.log(res);
             });
@@ -55,11 +62,14 @@ User.initialize(requestToken).then(function(res){
         });
 
 
-        User.updateFriends(userid).then(function(code){alert(JSON.stringify(code));});
-        User.friendsItems(userid).then(function(re){
-
-            alert(re);
+        User.updateFriends(userid).then(function(code){
+          //alert(JSON.stringify(code));
+          User.friendsItems(userid).then(function(re){
+                            alert("Friends and Items Loaded");
         });
+
+        });
+    /*    */
 
 
     });
@@ -190,7 +200,7 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
                   alert(userid); 
                   User.buy(userid,productId,"Beats headphone").then(function(msg){
 
-                     alertPopup.then(function(res) {});
+                    // alertPopup.then(function(res) {});
                   });
               };
 

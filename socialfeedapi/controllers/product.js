@@ -1,33 +1,38 @@
-var Artist = require('../models/artist');
+var Product = require('../models/product');
 
 exports.save = function (req, res) {
-var artist= new Artist();
-artist.name=req.body.name;
-artist.style=req.body.style;
-artist.location=req.body.location;
-artist.save(function(err) {
+json=req.body[0]
+var product= new Product();
+product.productID=json.id;
+product.prductName=json.name;
+product.productPrice=json.price;
+product.miniURL=json.miniURL;
+product.coverURLs=json.coverURLs;
+product.save(function(err) {
 if (err) res.send(err);
 res.json({ message: 'created!' });
 });
 };
 
+
 exports.see = function(req, res) {
-Artist.find(function(err, val) {
+Product.find(function(err, val) {
 if (err)
 	res.send(err);
 		res.json(val);
 }); 
 };
 
+/*
 exports.updatename = function (req, res) {
-	Artist.update({ 'name':  req.params.name}, req.body , {} , function (err, count) {
+	Product.update({ 'name':  req.params.name}, req.body , {} , function (err, count) {
 		if (err) console.log(err);
 		res.send({ 'updated': count });
 	});
 };
 
 exports.getname = function(req, res) {
-	Artist.find({ 'name':  req.params.name }, function (err, rcd) {
+	Product.find({ 'name':  req.params.name }, function (err, rcd) {
 		if (err) console.log(err);
 		res.json(rcd);
 	});
@@ -37,5 +42,5 @@ exports.deletename = function (req, res) {
 	var query =Artist.remove({ 'name':  req.params.name});
 	if(query.exec()) res.json("'status':'1'");
 	else res.json("'status':'0'"); 
-};
+};*/
 

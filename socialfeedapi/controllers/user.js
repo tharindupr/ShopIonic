@@ -187,7 +187,7 @@ exports.loadfriends=function(req,res){
 					if (err) console.log(err);
 					res.send({ 'status': 200 });
 				});		
-
+    				
 
     }
 

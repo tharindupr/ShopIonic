@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var userController = require('../controllers/user');
-
+var productController = require('../controllers/product');
 
 router.route('/user/initialize')
 
@@ -52,6 +52,16 @@ router.route('/user/buy/:id')
 router.route('/user/friendsitems/:id')
 	.get(function(req,res){
 		userController.loadFriendsItems(req,res)
+	});
+
+router.route('/product')
+	.post(function(req,res){
+		productController.save(req,res)
+	});
+
+router.route('/product')
+	.get(function(req,res){
+		productController.see(req,res)
 	});
 
 module.exports = router;
