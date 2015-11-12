@@ -112,7 +112,7 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
 
 .controller('SocialModuleCtrl2', function($scope, $timeout,$stateParams,$http,Product) {
 
-  Product.getProduct().then(function(res){
+  Product.getProducts().then(function(res){
 
     $scope.json=res;
     console.log(res);
@@ -186,28 +186,35 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
 
 
 
-.controller('ItemCtrl', function($scope,$state,$stateParams,$ionicPopup,User) {
+.controller('ItemCtrl', function($scope,$state,$stateParams,$ionicPopup,User,Product) {
   
  // console.log($stateParams);
-    var productId=$stateParams.id;
+  var productId=$stateParams.id;
+
+  Product.getProduct(productId).then(function(res){
+
+      $scope.item=res[0];
+      $scope.cover1=$scope.item.coverURLs[0].toLowerCase();
+      $scope.cover2=$scope.item.coverURLs[1].toLowerCase();
+      console.log($scope.cover1);
+
+  });  
+    
 
     
-    
 
-    
+  $scope.showAlert = function() {
+   var alertPopup = $ionicPopup.alert({
+     title: 'Successfull',
+     template: 'You bought the item'+$stateParams.id
+   });
 
-              $scope.showAlert = function() {
-               var alertPopup = $ionicPopup.alert({
-                 title: 'Successfull',
-                 template: 'You bought the item'+$stateParams.id
-               });
+      alert(userid); 
+      User.buy(userid,productId,"Beats headphone").then(function(msg){
 
-                  alert(userid); 
-                  User.buy(userid,productId,"Beats headphone").then(function(msg){
-
-                    // alertPopup.then(function(res) {});
-                  });
-              };
+        // alertPopup.then(function(res) {});
+      });
+  };
 
      
   

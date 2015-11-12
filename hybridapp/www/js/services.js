@@ -165,7 +165,7 @@ angular.module('mobile.services', ['ngResource'])
 
 .factory('Product',function($q,$http){
 
-  function getProduct(){
+  function getProducts(){
     var pr=$q.defer(); 
     $http.get(storeApi+'/api/product').then(function(resp) {
           //$scope.img=resp.data.data.url;  
@@ -182,7 +182,27 @@ angular.module('mobile.services', ['ngResource'])
     return pr.promise;
   }
 
-  return{getProduct:getProduct}
+
+  function getProduct(id){
+    var pr=$q.defer(); 
+    $http.get(storeApi+'/api/product/'+id).then(function(resp) {
+          //$scope.img=resp.data.data.url;  
+          //console.log(resp);
+          pr.resolve(resp.data);                             
+                    
+                      // For JSON responses, resp.data contains the result
+      }, function(err) {
+         // console.log(err);
+          pr.reject(err);
+                            // err.status will contain the status code
+      });
+
+    return pr.promise;
+
+
+  }
+
+  return{getProducts:getProducts,getProduct:getProduct}
 
 
 });
