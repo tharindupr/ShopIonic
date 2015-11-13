@@ -7,6 +7,7 @@ var userid="";
 angular.module('mobile.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout,$ionicHistory,$http,Facebook,User) {
+  User.login('asdsa');
   function ContentController($scope, $ionicSideMenuDelegate) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
@@ -157,15 +158,17 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
 })
 
 
-.controller("FacebookOauth", function($scope, $cordovaOauth,$state, $location,$http) {
-
+.controller("FacebookOauth", function($scope, $cordovaOauth,$state, $location,$http,User,$window) {
+    $window.localStorage['flag'] = false;
     $scope.facebookLogin = function() {
         $cordovaOauth.facebook("1679199088960955", ["email", "user_about_me","user_birthday","user_friends","user_likes"]).then(function(result) {
             //$localStorage.accessToken = result.access_token;
              requestToken=result.access_token;
              loginfrom="facebook";
+             User.login(requestToken);
              //alert(requestToken);
              $state.go('app.home');
+             $window.localStorage['flag'] = true;
 
              
            
@@ -209,7 +212,7 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
      template: 'You bought the item'+$stateParams.id
    });
 
-      alert(userid); 
+      //alert(userid); 
       User.buy(userid,productId,"Beats headphone").then(function(msg){
 
         // alertPopup.then(function(res) {});

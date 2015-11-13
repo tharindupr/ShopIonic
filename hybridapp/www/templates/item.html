@@ -7,6 +7,11 @@
      <img style="max-width: 100%;" class="img-responsive" src="{{item.coverURLs[0]}}">
 
   </ion-slide>
+    <ion-slide>
+ 		
+     <img style="max-width: 100%;" class="img-responsive" src="{{item.coverURLs[1]}}">
+
+  </ion-slide>
 
  
 </ion-slide-box>
@@ -14,8 +19,8 @@
 <div class="row">
 			  <div class="col col-60" tyle="font-size:12px"> 
 			  		<br>
-			  	 	<div>Beats Headset 887 Series</div>
-			        <div>Sale : $ 50.00</div>
+			  	 	<div>{{item.prductName}}</div>
+			        <div>Sale : {{item.productPrice}}</div>
 					<div >Select :
 					<select >
 					      <option>Blue</option>

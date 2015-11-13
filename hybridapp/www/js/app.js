@@ -5,9 +5,24 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('mobile', ['ionic', 'mobile.controllers', 'mobile.services','ngCordova'])
+angular.module('mobile', ['ionic','mobile.controllers', 'mobile.services','ngCordova'])
 
 .run(function($ionicPlatform) {
+
+  /*$rootScope.$on('$stateChangeStart',function(event,target){
+      authService.isAuthenticated().then(function(data){
+        if(data===true && target.name==='login'){
+        $state.go('app.property-search');
+        }
+        else if(data===false && target.name!=='login'){
+        $state.go('login');
+        }
+      });
+     });*/
+
+
+
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
