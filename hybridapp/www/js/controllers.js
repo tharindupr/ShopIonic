@@ -208,13 +208,15 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
   
  // console.log($stateParams);
   var productId=$stateParams.id;
-  console.log(productId);
+  var productName="";
+  //console.log(productId);
   Product.getProduct(productId).then(function(res){
 
       $scope.item=res[0];
       $scope.cover1=$scope.item.coverURLs[0].toLowerCase();
       $scope.cover2=$scope.item.coverURLs[1].toLowerCase();
-      console.log($scope.cover1);
+      productName=$scope.item.productName;
+      //console.log($scope.cover1);
 
   });  
     
@@ -228,7 +230,7 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
    });
 
       //alert(userid); 
-      User.buy(userid,productId,"Beats headphone").then(function(msg){
+      User.buy(userid,productId,productName).then(function(msg){
 
         // alertPopup.then(function(res) {});
       });

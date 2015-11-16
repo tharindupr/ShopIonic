@@ -226,15 +226,8 @@ exports.loadFriendsItems=function(req,res){
 
 	  					if(itemlist.purchasedItems.length>0)
 	  					{
-	  						User.findOneAndUpdate(
-							    {id: req.params.id},
-							    {$push: {friendsItems: itemlist.purchasedItems}},
-							    {safe: true, upsert: true},
-							    function(err, model) {
-							        console.log(err);
-							});
-			  				
-	  						
+	  						User.Update({id: req.params.id},{friendsItems: itemlist.purchasedItems});
+							      				
 	  					}
 
 
