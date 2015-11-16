@@ -205,7 +205,7 @@ exports.loadfriends=function(req,res){
 
 
 exports.loadFriendsItems=function(req,res){
-	console.log(req.params.id);
+	//console.log(req.params.id);
 	var items=[];
 	User.findOne({ 'id': req.params.id }, function (err, person) {
 	  if (err) return handleError(err);
@@ -226,8 +226,15 @@ exports.loadFriendsItems=function(req,res){
 
 	  					if(itemlist.purchasedItems.length>0)
 	  					{
-	  						User.update({id: req.params.id},{friendsItems: itemlist.purchasedItems});
-							      				
+	  						User.findOneAndUpdate(
+							    {id: req.params.id},
+							    {$push: {friendsItems: itemlist.purchasedItems}},
+							    {safe: true, upsert: true},
+							    function(err, model) {
+							        console.log(err);
+							});
+			  				
+	  						
 	  					}
 
 
