@@ -230,4 +230,49 @@ angular.module('mobile.services', ['ngResource'])
   return{getProducts:getProducts,getProduct:getProduct}
 
 
+})
+
+
+.factory('Featured',function($q,$http){
+
+  function getFeaturedProducts(){
+    var pr=$q.defer(); 
+    $http.get(storeApi+'/api/featured').then(function(resp) {
+          //$scope.img=resp.data.data.url;  
+          //console.log(resp);
+          pr.resolve(resp.data);                             
+                    
+                      // For JSON responses, resp.data contains the result
+      }, function(err) {
+         // console.log(err);
+          pr.reject(err);
+                            // err.status will contain the status code
+      });
+
+    return pr.promise;
+  }
+
+
+  function getFeaturedProduct(id){
+    var pr=$q.defer(); 
+    $http.get(storeApi+'/api/featured/'+id).then(function(resp) {
+          //$scope.img=resp.data.data.url;  
+          //console.log(resp);
+          pr.resolve(resp.data);                             
+                    
+                      // For JSON responses, resp.data contains the result
+      }, function(err) {
+         // console.log(err);
+          pr.reject(err);
+                            // err.status will contain the status code
+      });
+
+    return pr.promise;
+
+
+  }
+
+  return{getFeaturedProducts:getFeaturedProducts,getFeaturedProduct:getFeaturedProduct}
+
+
 });
