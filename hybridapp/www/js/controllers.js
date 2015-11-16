@@ -6,13 +6,21 @@ var loginfrom="";
 var userid="";
 angular.module('mobile.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,$ionicHistory,$http,Facebook,User) {
-  User.login('asdsa');
-  function ContentController($scope, $ionicSideMenuDelegate) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,$ionicHistory,$http,Facebook,User,$window) {
+
+function ContentController($scope, $ionicSideMenuDelegate) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
 }
+
+
+$scope.logout=function(){
+
+  User.logout();
+
+}
+
 $scope.name="";
 $scope.img="";
 $scope.email="";
@@ -167,8 +175,9 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
              loginfrom="facebook";
              User.login(requestToken);
              //alert(requestToken);
+             //$window.localStorage['flag'] = true;
              $state.go('app.home');
-             $window.localStorage['flag'] = true;
+             
 
              
            

@@ -3,6 +3,8 @@ var router = express.Router();
 
 var userController = require('../controllers/user');
 var productController = require('../controllers/product');
+var featuredController = require('../controllers/featured');
+
 
 router.route('/user/initialize')
 
@@ -67,6 +69,21 @@ router.route('/product')
 router.route('/product/:id')
 	.get(function(req,res){
 		productController.getbyId(req,res)
+	});
+
+router.route('/featured')
+	.post(function(req,res){
+		featuredController.save(req,res)
+	});
+
+router.route('/featured')
+	.get(function(req,res){
+		featuredController.see(req,res)
+	});
+
+router.route('/featured/:id')
+	.get(function(req,res){
+		featuredController.getbyId(req,res)
 	});
 
 module.exports = router;

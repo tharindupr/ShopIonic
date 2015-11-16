@@ -2,20 +2,29 @@ var storeApi="http://54.179.157.173:8080";
 angular.module('mobile.services', ['ngResource'])
 
 
-.factory('User', function($q,$http,$window) {
+.factory('User', function($q,$http,$window,$state) {
 
 
 
       function login(token){
-
+              
+          
               $window.localStorage['key'] = token;
               $window.localStorage['flag'] = true;
 
       }
 
-      function isAuthenticated(){
+      function logout(){
 
-              return
+               $window.localStorage['flag'] = false;
+               $state.go('login')
+
+      } 
+
+      function isAuthenticated(){
+              var q=$q.defer();
+              q.resolve($window.localStorage['flag']);
+              return(q.promise);
       }
 
 
@@ -134,7 +143,8 @@ angular.module('mobile.services', ['ngResource'])
       }
 
 
-      return{isThere:isThere,create:create,initialize:initialize,buy:buy,updateFriends:updateFriends,friendsItems:friendsItems,login:login}
+      return{isThere:isThere,create:create,initialize:initialize,buy:buy,updateFriends:updateFriends,friendsItems:friendsItems,login:login,
+        isAuthenticated:isAuthenticated,logout:logout}
 })
 
 

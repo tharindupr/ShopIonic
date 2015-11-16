@@ -7,21 +7,32 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('mobile', ['ionic','mobile.controllers', 'mobile.services','ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,User,$rootScope,$state) {
 
-  /*$rootScope.$on('$stateChangeStart',function(event,target){
-      authService.isAuthenticated().then(function(data){
-        if(data===true && target.name==='login'){
-        $state.go('app.property-search');
-        }
-        else if(data===false && target.name!=='login'){
-        $state.go('login');
-        }
-      });
-     });*/
+  $rootScope.$on('$stateChangeStart',function(event,target){
+
+     
+        User.isAuthenticated().then(function (data){
+
+            console.log(data);
+            if(data===true && target.name==='login'){
+
+                  $state.go('app.home.social');
+            }
+
+            else if(data===false && target.name!='login'){
+                  
+                  $state.go('login');
+
+            }
+
+        }); 
+        
+  });
 
 
 
+  
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
