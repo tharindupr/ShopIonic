@@ -138,7 +138,12 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
       //console.log(res);
   });
 
-  $scope.json=[{src:"img/headphone.jpg",id:131},{src:"img/headphone1.jpg",id:132},{src:"img/headphone2.jpg",id:134},{src:"img/headphone1.jpg",id:135}];
+   $scope.no=5;
+   $scope.range = function(n) {
+        return new Array(n);
+  };
+
+  //$scope.json=[{src:"img/headphone.jpg",id:131},{src:"img/headphone1.jpg",id:132},{src:"img/headphone2.jpg",id:134},{src:"img/headphone1.jpg",id:135}];
   //$scope.json=JSON.parse("[{'id':'1', 'src':'img/slide1.png'},{'id':'2', 'src':'img/slide2.png'},{'id':'3', 'src':'img/slide3.png'}]");
 
 })
@@ -203,7 +208,7 @@ $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
   
  // console.log($stateParams);
   var productId=$stateParams.id;
-
+  console.log(productId);
   Product.getProduct(productId).then(function(res){
 
       $scope.item=res[0];

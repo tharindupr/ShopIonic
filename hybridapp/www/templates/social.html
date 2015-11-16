@@ -61,7 +61,7 @@
 			  </div>
 			  <div class="col-md-4">
 			 
-				&nbsp;&nbsp;<span style="color: #29A011;">★</span><span style="color: #29A011;">★</span><span style="color: #29A011;">★</span><span>★</span><span>★</span>
+				&nbsp;&nbsp;<span ng-repeat="i in range(item['stars']) track by $index" style="color: #29A011;">★</span>
 			   	<br>
 			   
 			   <div style="font-size:12px">{{item['comments'][0]}}</div>
