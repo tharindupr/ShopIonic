@@ -226,7 +226,7 @@ exports.loadFriendsItems=function(req,res){
 
 	  					if(itemlist.purchasedItems.length>0)
 	  					{
-	  						User.Update({id: req.params.id},{friendsItems: itemlist.purchasedItems});
+	  						User.update({id: req.params.id},{friendsItems: itemlist.purchasedItems});
 							      				
 	  					}
 
