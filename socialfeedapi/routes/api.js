@@ -56,6 +56,12 @@ router.route('/user/friendsitems/:id')
 		userController.loadFriendsItems(req,res)
 	});
 
+router.route('/user/friendsitems/:id')
+	.delete(function(req,res){
+		userController.clearFriendsItems(req,res)
+	});
+
+
 router.route('/product')
 	.post(function(req,res){
 		productController.save(req,res)

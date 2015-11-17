@@ -212,11 +212,7 @@ exports.loadFriendsItems=function(req,res){
 
 	  else{
 	  	for(i=0;i<person.friends.length;i++){
-	  			//console.log(person.friends[i].id);
-	  				
-	  			id=	person.friends[i].id;
-	  			User.findOne({ 'id': id },function (err, itemlist) {
-
+	  			User.findOne({ 'id': person.friends[i].id},function (err, itemlist) {
 	  				if(itemlist==null)
 	  						{}
 	  				else
@@ -233,12 +229,8 @@ exports.loadFriendsItems=function(req,res){
 							    function(err, model) {
 							        console.log(err);
 							});
-			  				
-	  						
+			  									
 	  					}
-
-
-
 	  				}
 	  				//items.push(itemlist.purchasedItems);
 
@@ -260,3 +252,10 @@ res.json({'status':200});
 }
 
 
+exports.clearFriendsItems=function(req,res){
+
+	User.update({'id': req.params.id}, {$unset: {friendsItems: 1 }},
+
+		res.json({'status':200});
+	);
+}
