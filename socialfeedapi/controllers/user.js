@@ -252,10 +252,3 @@ res.json({'status':200});
 }
 
 
-exports.clearFriendsItems=function(req,res){
-
-	User.update({'id': req.params.id}, {$unset: {friendsItems: 1 }},
-
-		res.json({'status':200});
-	);
-}
