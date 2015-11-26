@@ -32,7 +32,7 @@ exports.getbyId = function(req, res) {
 };
 
 
-export.test=function(req,res){
+exports.test=function(req,res){
 
 	res.json({'test':'success'});
 };
