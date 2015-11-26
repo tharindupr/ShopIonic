@@ -34,7 +34,7 @@ exports.getbyId = function(req, res) {
 
 export.test=function(req,res){
 
-	res.json({'test':'success'})
+	res.json({'test':'success'});
 };
 
 /*
