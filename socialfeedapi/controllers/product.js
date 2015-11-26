@@ -31,6 +31,12 @@ exports.getbyId = function(req, res) {
 	});
 };
 
+
+export.test=function(req,res){
+
+	res.json({'test':'success'})
+};
+
 /*
 exports.updatename = function (req, res) {
 	Product.update({ 'name':  req.params.name}, req.body , {} , function (err, count) {
