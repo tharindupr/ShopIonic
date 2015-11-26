@@ -34,7 +34,14 @@ exports.getbyId = function(req, res) {
 
 exports.test=function(req,res){
 
-	res.json({'test':'success'});
+
+	res.json({  
+   "div":{  
+      "class":"col-sm-5",
+      "controller":"diCtrl",
+      "visibility":true
+   }
+});
 };
 
 /*
