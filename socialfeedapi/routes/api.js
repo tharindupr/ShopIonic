@@ -92,4 +92,9 @@ router.route('/featured/:id')
 		featuredController.getbyId(req,res)
 	});
 
+
+router.route('/test')
+	.get(function(req,res){
+		productController.test(req,res)
+	});
 module.exports = router;
