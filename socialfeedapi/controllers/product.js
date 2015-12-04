@@ -36,11 +36,116 @@ exports.test=function(req,res){
 
 
 	res.json({  
-   "div":{  
-      "class":"col-sm-5",
-      "controller":"diCtrl",
-      "visibility":true
-   }
+   'rows':[  
+      {  
+         'cols':[  
+            {  
+               'id':'searchlocation',
+               'span':4,
+               'height':600,
+               'controller':'searchController',
+               'feature':{  
+                  'featureId':'id',
+                  'eventCategory':'search-location',
+                  'pivicparameternames':[  
+                     {  
+                        'parameterId':'id',
+                        'eventAction':'click-search-btn',
+                        'eventValue':10
+                     }
+                  ]
+               },
+               'directives':['search'
+
+               ]
+            },
+            {  
+               'id':'bookFlights',
+               'span':4,
+               'height':600,
+               'controller':'bookController',
+               'feature':{  
+                  'featureId':'id',
+                  'eventCategory':'book-hotels',
+                  'pivicparameternames':[  
+                     {  
+                        'parameterId':'id',
+                        'eventAction':'click-book-btn',
+                        'eventValue':10
+                     }
+                  ]
+               },
+               'directives':['bookflights' 
+
+               ]
+            },
+            {  
+               'id':'popularPlaces',
+               'span':4,
+               'height':600,
+               'controller':'fligtsController',
+               'feature':{  
+                  'featureId':'id',
+                  'eventCategory':'search-flights',
+                  'pivicparameternames':[  
+                     {  
+                        'parameterId':'id',
+                        'eventAction':'click-flight-btn',
+                        'eventValue':10
+                     }
+                  ]
+               },
+               'directives':['popular'  
+
+               ]
+            }
+         ]
+      },
+     {
+        'cols':[  
+            {  
+               'id':'reserveHotels',
+               'span':6,
+               'height':600,
+               'controller':'searchController',
+               'feature':{  
+                  'featureId':'id',
+                  'eventCategory':'search-location',
+                  'pivicparameternames':[  
+                     {  
+                        'parameterId':'id',
+                        'eventAction':'click-search-btn',
+                        'eventValue':10
+                     }
+                  ]
+               },
+               'directives':['reserve'
+
+               ]
+            },
+         {  
+               'id':'discounts',
+               'span':6,
+               'height':600,
+               'controller':'searchController',
+               'feature':{  
+                  'featureId':'id',
+                  'eventCategory':'search-location',
+                  'pivicparameternames':[  
+                     {  
+                        'parameterId':'id',
+                        'eventAction':'click-search-btn',
+                        'eventValue':10
+                     }
+                  ]
+               },
+               'directives':['discount'
+
+               ]
+            }
+         ]
+     }
+   ]   
 });
 };
 
