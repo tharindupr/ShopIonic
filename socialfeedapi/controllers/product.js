@@ -40,7 +40,7 @@ exports.test=function(req,res){
       {  
          'cols':[  
             {  
-               'id':'searchlocation',
+               'id':'searchLocation',
                'span':4,
                'height':600,
                'controller':'searchController',
